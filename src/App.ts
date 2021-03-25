@@ -17,9 +17,9 @@ const polly = new Polly({
 
 console.log('Preparing input');
 const input = {
-    Text: ", hello Yenz! I am happy to be alive.",
-    OutputFormat: "pcm",
-    // OutputFormat: "mp3",
+    Text: "... hello Yenz! I am happy to be alive.",
+    // OutputFormat: "pcm",
+    OutputFormat: "mp3",
     VoiceId: "Salli",
     Engine: "neural"
 }
@@ -34,17 +34,18 @@ polly.synthesizeSpeech(input, (err, response) => {
     }
     if (response && response.AudioStream){
         const stream: any = response.AudioStream;
-        fs.writeFile("./speech.pcm", stream, err => {
+        // fs.writeFile("./speech.pcm", stream, err => {
+        fs.writeFile("./speech.mp3", stream, err => {
             if (err) {
                 return console.log(err)
             }
             console.log("The file was saved!");
 
-            // Playing the file
-            const buffer = Buffer.from( fs.readFileSync("./speech.pcm").buffer);
-            const bufferStream = new PassThrough();
-            bufferStream.end(buffer);
-            bufferStream.pipe(player);
+            // Playing the pcm file
+            // const buffer = Buffer.from( fs.readFileSync("./speech.pcm").buffer);
+            // const bufferStream = new PassThrough();
+            // bufferStream.end(buffer);
+            // bufferStream.pipe(player);
 
         })
     }
