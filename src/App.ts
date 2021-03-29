@@ -1,13 +1,7 @@
 import {Polly} from "aws-sdk"
 import { PassThrough } from "stream";
-import Speaker from "speaker";
 import fs from "fs";
 
-const player = new Speaker({
-    channels: 1,
-    bitDepth: 16,
-    sampleRate: 16000
-});
 
 
 console.log('Initializing Polly...');
